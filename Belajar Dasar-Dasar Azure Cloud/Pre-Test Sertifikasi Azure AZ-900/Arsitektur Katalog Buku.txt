@@ -1,0 +1,24 @@
+Assalamualaikum
+Saya akan mengumpulkan revisi tugas rancangan arsitektur pada kelas Belajar Dasar Azure Cloud Dicoding batch 3
+Pada arsitektur ini saya akan menunjukkan layanan Azure untuk menghasilkan ketersediaan tinggi dan latensi rendah bagi pengguna yang berbeda region.
+
+Agar menghasilkan ketersediaan tinggi dan latensi yang rendah, perlu dibuat server yang berdekatan negara Indonesia dan Amerika. Pada arsitektur ini telah dipilih Southeast Asia dan Central US untuk region Azure CLoud.
+
+Kemudian penjelasan tentang alur data.
+
+Dari sebelah kiri.
+User bisa menggunakan berbagai perangkat untuk masuk ke dalam aplikasi web. Pada aplikasi ini user dibedakan menjadi admin dan user biasa. Untuk autentikasi nya dipergunakan Azure Active Directory.
+ 
+DNS untuk pengalamatan nama web aplikasi menjadi IP address.
+
+Traffic manager untuk mengarahkan pengguna ke server terdekat secara geografis, karena mayoritas pengguna berasal dari Indonesia dan Amerika, kita ambil contoh untuk mendeploy server di region southeast asia dan central us yang keduanya dekat dari masing-masing negara. User dari Indonesia akan diarahkan masuk ke server yang berada di region southeast asia,sedangkan user dari amerika akan diarahkan masuk ke server yang berada di region central us.
+
+Di dalam masing-masing region, terdapat tiga virtual machine yang berfungsi sebagai server sekaligus front-end. Kemudian untuk menangani traffic yang padat, diaplikasikan pula load balancer yang berfungsi sebagai pembagi traffic untuk ketiga VM.
+
+Kemudian di bagian terakhir terdapat database sebagai back-end, yang berfungsi untuk menyimpan data-data katalog buku. Pembagian traffic untuk database juga akan diatur oleh load balancer.
+Database di kedua region akan saling bersingkronisasi agar tidak terjadi kesalahan tulis/baca katalog buku
+
+Jadi secara garis besar, data dari user akan diarahkan ke masing-masing region, user berinteraksi dengan UI pada frontend, input data katalog buka, dan kemudian nantinya data tersebut akan disimpan di database. 
+
+Sekian
+Wassalamualaikum

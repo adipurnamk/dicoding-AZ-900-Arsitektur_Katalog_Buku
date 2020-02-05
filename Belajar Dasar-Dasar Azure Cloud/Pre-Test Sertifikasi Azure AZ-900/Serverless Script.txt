@@ -1,0 +1,17 @@
+Disini saya akan menjelaskan cloud architecture sebagai tugas Pre-Test Sertifikasi Azure AZ-900, pada program Beasiswa Microsoft Azure Academy 2019 
+
+Azure Serverless Architecture
+
+Kenapa serverless?
+Menurut yang saya baca pada suatu artikel di medium.com/ ketimbang service yang berbasis server/ serverles menjanjikan proses atutoscaling yang otomatis dan lebih cepat. Sehingga tidak lagi direpotkan dengan banyaknya traffic yang masuk.
+
+Rancangan ini singkatnya menunjukkan aplikasi web yang serverless yang nantinya kan menghadirkan web-statis dari Blob-Storage dan mengimplementasikan API menggunakan Azure Functions. Kemudian API membaca data dari CosmoDB dan menampilkannya hasilnya pada aplikasi web.
+
+Maasing-masing komponen arsiktektur ini adalah sebagai berikut
+1. Blob Storage sebagai wadah konten web statis, bisa berupa html, css maupun java script
+2. CDN (Content Delivery Network) sebagai cache konten agar menurunkan latensi dan pengiriman konten yang lebih cepat, juga menyediakan endpoint HTTPS atau HTTP Secure
+3. Function Apps, sebagai pengganti VM/komputer pada model serverless. Fungsi ini mulai akan di-trigger saat user mengirimkan HTTP request yang sebelumnya melewati API Management
+4. API Management
+5. Cosmos DB, sebagai layanan multi-model database
+6. Azure Monitor, untuk memantau performa layanan aplikasi web kita
+7. Azure Pipelines, sebagai layanan CI (continous integration) dan CD (continous delivery) untuk pengembangan aplikasi.
